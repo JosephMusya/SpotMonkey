@@ -1,8 +1,8 @@
-import cv2
+import cv2 #Computer vision library
 import os
 import signal
 import time
-import _twilio
+import _twilio #Messaging platform
 import sys
 import led
 from edge_impulse_linux.image import ImageImpulseRunner
@@ -12,6 +12,7 @@ token = 'Enter the token credential here'
 runner, show_camera = None, None
 count = 0
 red,green = 14, 15
+
 def now():
     return round(time.time() * 1000)
 def sigint_handler(sig, frame):
@@ -19,11 +20,13 @@ def sigint_handler(sig, frame):
     if (runner):runner.stop()
     sys.exit(0)
 signal.signal(signal.SIGINT, sigint_handler)
+
+#main function
 def main():
     try:
         global count
         led.running()
-        dir_path = 'Model directory here'
+        dir_path = 'Model directory here' #The compiled model directory
         model = 'modelfile.eim'
         modelfile = os.path.join(dir_path, model)
         print('MODEL: ' + modelfile)
